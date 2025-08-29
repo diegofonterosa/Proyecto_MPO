@@ -1,7 +1,7 @@
 import json
 import os
 from datetime import datetime
-
+#Preguntas
 def cargar_preguntas():
     preguntas = {
         "informática": {
@@ -72,3 +72,52 @@ def cargar_preguntas():
         }
     }
     return preguntas
+# Seleccionar tema
+def seleccionar_tema(preguntas):
+    print("Seleccione un tema:")
+    temas = list(preguntas.keys())
+    
+    for i, tema in enumerate(temas, 1):
+        print(f"{i}. {preguntas[tema]["nombre"]}")
+    print(f"{len(temas)+1}. Todas las preguntas  (modo mixto)")
+   # Selección 
+    while True:
+        try:
+            opcion = int(input(f"\nElige una opción (1-{len(temas)+1}):"))
+            
+            if 1 <= opcion <= len(temas):
+                tema_elegido = temas[opcion - 1]
+                return preguntas[tema_elegido]["preguntas"], preguntas[tema_elegido]["nombre"]
+            elif opcion == len(temas) + 1:
+                #Todas las preguntas
+                todas_preguntas = []
+                for tema in preguntas.values():
+                    todas_preguntas.extend(temas["preguntas"])
+                return todas_preguntas, "Todas las materias"
+            else:
+                print("Opción no válida. Inténtalo de nuevo")
+        except ValueError:
+            print("Por favor, introduce un número válido")
+            
+# Muestra pregunta
+def mostrar_pregunta(pregunta, numero, total):
+    print("\n" + "="*50)                                       
+    print(f"PREGUNTA {numero} de {total}")
+    print("="*50)
+    print(f"{pregunta["pregunta"]}")
+    print()
+    for opcion in pregunta["opciones"]:
+        print(f"{opcion}")
+    print()
+#Obtener respuesta
+def obtener_respuesta():
+    respuestas_validas = ["A", "B", "C", "D"]
+    while True:
+        respuesta = input("Selecciona una opción (A, B, C, D): ").strip().upper()
+        if respuesta in respuestas_validas:
+            return respuesta
+        print("Opción no válida. Inténtalo de nuevo.")
+ #Corregir la respuesta     
+def corregir_respuesta(respuesta, correcta):
+    return respuesta == correcta
+
