@@ -120,4 +120,97 @@ def obtener_respuesta():
  #Corregir la respuesta     
 def corregir_respuesta(respuesta, correcta):
     return respuesta == correcta
+# Valoración
+def obtener_valoracion(porcentaje):
+    if porcentaje >= 90:
+        return "EXCELENTE - Eres un experto"
+    elif porcentaje >= 75:
+        return "MUY BIEN - Gran conocimiento"
+    elif porcentaje >= 60:
+        return "BIEN - Buen trabajo"
+    elif porcentaje >= 50:
+        return "REGULAR - Puedes mejorar"
+    else:
+        return "INSUFICIENTE - Necesitas estudiar más" 
+# Mostrar el resultado    
+def mostrar_resultados(aciertos, total, tema):
+    print("\n" + "="*60)
+    print("RESULTADOS DEL CUESTIONARIO")
+    print("="*60)
+    
+    porcentaje = (aciertos / total) * 100
+    fallos = total - aciertos
+    valoracion = obtener_valoracion(porcentaje)
+    
+    print(f"Tema: {tema}")
+    print(f"Preguntas totales: {total}")
+    print(f"Respuestas correctas: {aciertos}")
+    print(f"Respuestas incorrectas: {fallos}")
+    print(f"Porcentaje de aciertos: {porcentaje:.1f}%")
+    print(f"Valoración: {valoracion}")
+    print("="*60)
+    
+    return porcentaje
+# Cargar el ranking
+def cargar_ranking():
+    archivo_ranking = "ranking.json"
+    try:
+        if os.path.exists(archivo_ranking):
+            with open(archivo_ranking, "r", encoding="utf-8") as archivo:
+                return json.load(archivo)
+        else:
+            return []
+    except:
+        print("Error al cargar el ranking. Se iniciará de nuevo")
+        return []
+#Guardar el ranking    
+def guardar_ranking(ranking):
+    archivo_ranking = "ranking.json"
+    try:
+        with open(archivo_ranking, "w", encoding="utf-8") as archivo:
+            json.dump(ranking, archivo, indent=2, ensure_ascii=False)
+        return True
+    except:
+        print("Error al guardar el ranking.")
+        return False
+# Añadir al ranking resultados  
+def agregar_al_ranking(ranking, nombre, tema, aciertos, total, porcentaje):
+    
+    nuevo_resultado = {
+        "nombre": nombre,
+        "tema" : tema,
+        "aciertos" : aciertos,
+        "total" : total,
+        "porcentaje" : porcentaje,
+        "fecha" : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    
+    ranking.append(nuevo_resultado) 
+    ranking.sort(key=lambda x: x["porcentaje"], reverse=True)
+    
+    return ranking
+
+def mostrar_ranking(ranking):
+    
+    if not ranking:
+        print("\nEl ranking está vacío. ¡Sé el primero en participar!")
+        return
+
+    print("\n" + "="*70)
+    print("\nRANKING DE MEJORES PUNTUACIONES")
+    print("="*70)
+    print(f"{"#":<3} {"Nombre":<20} {"Tema":<20} {"Aciertos":<10} {"%":<10} {"Fecha":<19}")
+    print("="*70)
+    
+    top_10 = ranking[:10]
+    for i, resultado in enumerate(top_10, 1):
+        nombre = resultado["nombre"][:20]
+        tema = resultado["tema"][:20]
+        aciertos = f"{resultado["aciertos"]}/{resultado["total"]}"
+        porcentaje = f"{resultado["porcentaje"]:.1f}%"
+        fecha = resultado["fecha"]
+
+        print(f"{i:<3}. {nombre:<21} - {tema:<21} - {aciertos:<10} - {porcentaje:<10} - {fecha}")
+        
+    print("="*70)
 
