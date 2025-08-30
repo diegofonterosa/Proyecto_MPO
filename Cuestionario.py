@@ -92,7 +92,7 @@ def seleccionar_tema(preguntas):
                 #Todas las preguntas
                 todas_preguntas = []
                 for tema in preguntas.values():
-                    todas_preguntas.extend(temas["preguntas"])
+                    todas_preguntas.extend(tema["preguntas"])
                 return todas_preguntas, "Todas las materias"
             else:
                 print("Opción no válida. Inténtalo de nuevo")
@@ -178,18 +178,18 @@ def agregar_al_ranking(ranking, nombre, tema, aciertos, total, porcentaje):
     
     nuevo_resultado = {
         "nombre": nombre,
-        "tema" : tema,
-        "aciertos" : aciertos,
-        "total" : total,
-        "porcentaje" : porcentaje,
-        "fecha" : datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        "tema": tema,
+        "aciertos": aciertos,
+        "total": total,
+        "porcentaje": porcentaje,
+        "fecha": datetime.now().strftime("%Y-%m-%d %H:%M")
     }
     
     ranking.append(nuevo_resultado) 
     ranking.sort(key=lambda x: x["porcentaje"], reverse=True)
     
     return ranking
-
+# Mostar ranking
 def mostrar_ranking(ranking):
     
     if not ranking:
@@ -213,4 +213,90 @@ def mostrar_ranking(ranking):
         print(f"{i:<3}. {nombre:<21} - {tema:<21} - {aciertos:<10} - {porcentaje:<10} - {fecha}")
         
     print("="*70)
+# Ejecutar el cuestionario
+def ejecutar_cuestionario():
+    
+    print("\n¡BIENVENIDO AL CUESTIONARIO DE ASIR!")
+    
+    # Cargar preguntas y ranking
+    preguntas = cargar_preguntas()
+    ranking = cargar_ranking()
+    
+    # Seleccionar tema
+    preguntas_elegidas, tema = seleccionar_tema(preguntas)
+    
+    # Obtener nombre del usuario
+    nombre = input("\nIntroduce tu nombre: ").strip()
+    if not nombre:
+        nombre = "Anónimo"
+    
+    print(f"\nHola {nombre}! Vas a responder {len(preguntas_elegidas)} preguntas sobre: {tema}")
+    input("Presiona Enter cuando estés listo...")
+    
+    # Variables para el cuestionario
+    aciertos = 0
+    
+    # Ejecutar cada pregunta
+    for i, pregunta in enumerate(preguntas_elegidas, 1):
+        mostrar_pregunta(pregunta, i, len(preguntas_elegidas))
+        respuesta = obtener_respuesta()
+        
+        if corregir_respuesta(respuesta, pregunta['respuesta_correcta']):
+            print(" ¡CORRECTO!")
+            aciertos += 1
+        else:
+            print("X INCORRECTO")
+            # Mostrar cuál era la respuesta correcta
+            respuesta_correcta = pregunta['respuesta_correcta']
+            for opcion in pregunta['opciones']:
+                if opcion.startswith(respuesta_correcta):
+                    print(f"La respuesta correcta era: {opcion}")
+                    break
+        
+        # Pausa entre preguntas
+        if i < len(preguntas_elegidas):
+            input("\nPresiona Enter para continuar...")
+    
+    # Mostrar resultados
+    porcentaje = mostrar_resultados(aciertos, len(preguntas_elegidas), tema)
+    
+    # Agregar al ranking
+    ranking = agregar_al_ranking(ranking, nombre, tema, aciertos, len(preguntas_elegidas), porcentaje)
+    
+    # Guardar ranking
+    if guardar_ranking(ranking):
+        print("\n¡Tu puntuación ha sido guardada en el ranking!")
+    
+    return ranking
+
+def mostrar_menu():
+    print("\n" + "="*40)
+    print("   CUESTIONARIO INTERACTIVO ASIR")
+    print("="*50)
+    print("### MENU PRINCIPAL ###")
+    print("1 - Empezar cuestionario")
+    print("2 - Mostrar ranking")
+    print("3 - Salir")
+    print("="*40)
+    
+def main():
+    
+    ranking = cargar_ranking()
+
+    while True:
+        mostrar_menu()
+        opcion = input("Selecciona una opción (1-3): ").strip()
+
+        if opcion == "1":
+            ranking = ejecutar_cuestionario()
+        elif opcion == "2":
+            mostrar_ranking(ranking)
+        elif opcion == "3":
+            print("¡Hasta luego!")
+            break
+        else:
+            print("Opción no válida. Por favor, selecciona una opción del menú.")
+            
+if __name__ == "__main__":
+    main()
 
