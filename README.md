@@ -1,68 +1,45 @@
 # 🎯 Sistema de Cuestionarios Interactivo ASIR
 
-Sistema de evaluación por línea de comandos (CLI) especializado en preguntas de Administración de Sistemas Informáticos en Red (ASIR). Incluye sistema de puntuación, ranking persistente y múltiples categorías temáticas.
+Aplicación CLI en Python para practicar contenidos de ASIR con ranking persistente y feedback inmediato.
 
-![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Status](https://img.shields.io/badge/Status-Active-success.svg)
+## ✨ Mejoras aplicadas
 
-## 📋 Descripción
+- Código refactorizado con funciones tipadas y estructura más mantenible.
+- Manejo robusto de errores en carga/guardado de ranking.
+- Validación de entrada más estricta y mensajes más claros.
+- Preguntas mezcladas automáticamente en cada ejecución.
+- Modalidad de examen configurable: completo, corto de 10, corto de 20 o personalizado (cantidad elegida, siempre aleatoria).
+- Temporizador opcional por pregunta con tiempo configurable.
+- Modo examen oficial de un clic: 20 preguntas con 20 segundos por pregunta.
+- Salida de ranking más legible (Top 10).
 
-Aplicación interactiva de consola que permite a estudiantes de ASIR evaluar sus conocimientos en distintas áreas técnicas mediante cuestionarios de opción múltiple. El sistema registra y clasifica las puntuaciones en un ranking persistente almacenado en formato JSON.
+## 📚 Banco de preguntas
 
-## ✨ Características
+El proyecto incluye ahora **60 preguntas** (se añadieron más de 50 nuevas):
 
-- 📚 **Múltiples categorías temáticas**: Informática Básica, Redes y Comunicaciones, Seguridad Informática
-- 🎲 **Modo mixto**: Posibilidad de responder todas las preguntas aleatoriamente
-- 💾 **Persistencia de datos**: Ranking guardado en archivo JSON
-- 📊 **Sistema de puntuación**: Cálculo de porcentajes y valoración cualitativa
-- 🏆 **Ranking top 10**: Clasificación de mejores puntuaciones con fecha y hora
-- ✅ **Validación de respuestas**: Feedback inmediato con respuesta correcta en caso de error
-- 👤 **Registro de usuarios**: Identificación personalizada de participantes
-- 🎨 **Interfaz CLI clara**: Menús estructurados y navegación intuitiva
+- **Informática Básica**: 20
+- **Redes y Comunicaciones**: 20
+- **Seguridad Informática**: 20
 
-## 🛠️ Tecnologías utilizadas
+También puedes usar **modo mixto** para combinar todas las preguntas.
 
-- **Python 3.x**
-- **JSON** - Almacenamiento de datos
-- **datetime** - Registro temporal de resultados
-- **os** - Gestión de archivos del sistema
+## 🛠️ Requisitos
 
-## 📦 Requisitos
+- Python 3.10+
+- Sin dependencias externas
 
-- Python 3.6 o superior
-- No requiere librerías externas
+## 🚀 Ejecución
 
-## 🚀 Instalación y uso
-
-### Clonar el repositorio
-```bash
-git clone https://github.com/diegofonterosa/Proyecto_MPO.git
-cd Proyecto_MPO
-```
-
-### Ejecutar el programa
 ```bash
 python Cuestionario.py
 ```
 
-## 💻 Funcionalidades del menú
+## 📁 Archivos
 
-### 1. Empezar cuestionario
-- Selección de tema específico o modo mixto
-- Introducción del nombre del participante
-- Responder preguntas de opción múltiple (A, B, C, D)
-- Feedback inmediato tras cada respuesta
-- Resultados finales con porcentaje y valoración
+- `Cuestionario.py`: lógica completa del cuestionario
+- `ranking.json`: ranking persistente (se crea automáticamente)
 
-### 2. Mostrar ranking
-- Visualización del top 10 de mejores puntuaciones
-- Información detallada: nombre, tema, aciertos, porcentaje, fecha
-
-### 3. Salir
-- Cierre del programa
-
-## 📊 Sistema de valoración
+## 📊 Valoración de resultados
 
 | Porcentaje | Valoración |
 |------------|-----------|
@@ -72,107 +49,6 @@ python Cuestionario.py
 | 50% - 59%  | REGULAR - Puedes mejorar |
 | 0% - 49%   | INSUFICIENTE - Necesitas estudiar más |
 
-## 📸 Ejemplo de uso
-```
-¡BIENVENIDO AL CUESTIONARIO DE ASIR!
+## 🧪 Nota
 
-Seleccione un tema:
-1. Informática Básica
-2. Redes y Comunicaciones
-3. Seguridad Informática
-4. Todas las preguntas (modo mixto)
-
-Elige una opción (1-4): 1
-
-Introduce tu nombre: Diego
-
-Hola Diego! Vas a responder 4 preguntas sobre: Informática Básica
-Presiona Enter cuando estés listo...
-
-==================================================
-PREGUNTA 1 de 4
-==================================================
-¿Qué significa RAM?
-
-A. Random Access Memory
-B. Read Access Memory
-C. Real Access Memory
-D. Rapid Access Memory
-
-Selecciona una opción (A, B, C, D): A
-✓ ¡CORRECTO!
-```
-
-## 📁 Estructura de archivos
-```
-Proyecto_MPO/
-│
-├── Cuestionario.py      # Código principal del programa
-├── ranking.json         # Ranking de puntuaciones (se crea automáticamente)
-└── README.md           # Este archivo
-```
-
-## 🎯 Temas y preguntas incluidas
-
-### Informática Básica (4 preguntas)
-- Conceptos de hardware (RAM)
-- Sistemas operativos
-- Protocolos de red (HTTP)
-- Direccionamiento IP (loopback)
-
-### Redes y Comunicaciones (3 preguntas)
-- DNS (Domain Name System)
-- Modelo OSI y routers
-- Protocolos de transferencia segura (SFTP)
-
-### Seguridad Informática (2 preguntas)
-- Firewalls
-- HTTPS y seguridad en la web
-
-## 🔧 Posibles mejoras futuras
-
-- [ ] Añadir más preguntas y categorías
-- [ ] Implementar dificultad progresiva
-- [ ] Exportar resultados a PDF
-- [ ] Interfaz gráfica (GUI) con Tkinter
-- [ ] Base de datos SQLite en lugar de JSON
-- [ ] Temporizador para cada pregunta
-- [ ] Estadísticas detalladas por usuario
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Si deseas mejorar el proyecto:
-
-1. Fork el repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/NuevaCaracteristica`)
-3. Commit tus cambios (`git commit -m 'Añadir nueva característica'`)
-4. Push a la rama (`git push origin feature/NuevaCaracteristica`)
-5. Abre un Pull Request
-
-## 👤 Autor
-
-**Diego Pérez Fonterosa**
-- GitHub: [@diegofonterosa](https://github.com/diegofonterosa)
-- LinkedIn: [Diego Pérez Fonterosa](https://linkedin.com/in/diegoperezfonterosa)
-
-## 📞 Contacto
-
-Para preguntas o sugerencias, puedes contactarme en:
-- Email: diegofonterosa@gmail.com
-- LinkedIn: https://linkedin.com/in/diegoperezfonterosa
-
----
-
-⭐ Si te ha gustado este proyecto, ¡dale una estrella en GitHub!
-```
-
-python
-cli
-quiz-app
-asir
-interactive-quiz
-education
-ranking-system
-json-database
-terminal-app
-learning-tool
+Si quieres ampliar todavía más el banco, solo hay que añadir entradas al diccionario de `cargar_preguntas()` respetando el formato actual.
