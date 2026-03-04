@@ -1,21 +1,21 @@
 # ASIR Interactive Quiz System
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Estado](https://img.shields.io/badge/Estado-Activo-blue?style=flat-square)]()
-[![Interfaz](https://img.shields.io/badge/Interfaz-CLI-4CAF50?style=flat-square)]()
+[![Status](https://img.shields.io/badge/Status-Active-blue?style=flat-square)]()
+[![Interface](https://img.shields.io/badge/Interface-CLI-4CAF50?style=flat-square)]()
 
-Aplicación de evaluación técnica en consola para contenidos de ASIR. El proyecto incluye banco de preguntas por categorías, modos de examen, temporizador opcional, ranking persistente y métricas de distribución de respuestas.
+A command-line technical quiz platform focused on ASIR learning domains. The project includes categorized question banks, multiple exam modes, optional timers, persistent ranking, and answer distribution metrics.
 
-## Resumen
+## Overview
 
-- Banco de preguntas organizado por categorías técnicas.
-- Modos de examen: completo, corto (10/20), personalizado y oficial.
-- Temporizador configurable por pregunta.
-- Aleatorización de preguntas y opciones de respuesta.
-- Ranking Top 10 persistente en JSON.
-- Informe final de resultados con distribución A/B/C/D.
+- Question bank organized by technical domains.
+- Multiple exam modes: full, short (10/20), custom, and official.
+- Optional per-question timer.
+- Randomized question order and answer options.
+- Persistent Top 10 ranking stored in JSON.
+- Final report with A/B/C/D correct-answer distribution.
 
-## Estructura del proyecto
+## Project Structure
 
 ```text
 ASIR-Interactive-Quiz-System/
@@ -24,31 +24,31 @@ ASIR-Interactive-Quiz-System/
 └── README.md
 ```
 
-## Banco de preguntas
+## Question Bank
 
-| Categoría | Nº preguntas |
+| Category | Questions |
 |---|---:|
-| Informática Básica | 20 |
-| Redes y Comunicaciones | 20 |
-| Seguridad Informática | 20 |
+| Basic IT | 20 |
+| Networking & Communications | 20 |
+| Cybersecurity | 20 |
 
-Total: **60 preguntas**.
+Total: **60 questions**.
 
-## Modos de ejecución
+## Exam Modes
 
-| Modo | Descripción |
+| Mode | Description |
 |---|---|
-| Personalizado | Cantidad de preguntas y temporizador definidos por el usuario |
-| Oficial | 20 preguntas con 20 segundos por pregunta |
-| Por tema | Selección de una categoría concreta |
-| Mixto | Combinación de preguntas de todas las categorías |
+| Custom | User-defined number of questions and timer |
+| Official | 20 questions with 20 seconds per question |
+| By topic | Single category selection |
+| Mixed | Combined questions from all categories |
 
-## Requisitos
+## Requirements
 
-- Python 3.10 o superior
-- Sin dependencias externas
+- Python 3.10+
+- No external dependencies
 
-## Ejecución
+## Run
 
 ```bash
 git clone https://github.com/diegofonterosa/ASIR-Interactive-Quiz-System.git
@@ -56,23 +56,23 @@ cd ASIR-Interactive-Quiz-System
 python Cuestionario.py
 ```
 
-## Escala de valoración
+## Scoring Scale
 
-| Porcentaje | Resultado |
+| Percentage | Rating |
 |---|---|
-| 90% - 100% | EXCELENTE |
-| 75% - 89% | MUY BIEN |
-| 60% - 74% | BIEN |
-| 50% - 59% | REGULAR |
-| 0% - 49% | INSUFICIENTE |
+| 90% - 100% | EXCELLENT |
+| 75% - 89% | VERY GOOD |
+| 60% - 74% | GOOD |
+| 50% - 59% | FAIR |
+| 0% - 49% | INSUFFICIENT |
 
-## Autor
+## Author
 
 **Diego Pérez Fonterosa**
 
 [![GitHub](https://img.shields.io/badge/GitHub-diegofonterosa-181717?style=flat-square&logo=github)](https://github.com/diegofonterosa)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Diego%20Pérez-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/diegoperezfonterosa)
 
-## Licencia
+## License
 
-© Diego Pérez Fonterosa. Todos los derechos reservados.
+© Diego Pérez Fonterosa. All rights reserved.
