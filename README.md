@@ -1,54 +1,78 @@
-# 🎯 Sistema de Cuestionarios Interactivo ASIR
+# ASIR Interactive Quiz System
 
-Aplicación CLI en Python para practicar contenidos de ASIR con ranking persistente y feedback inmediato.
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Estado](https://img.shields.io/badge/Estado-Activo-blue?style=flat-square)]()
+[![Interfaz](https://img.shields.io/badge/Interfaz-CLI-4CAF50?style=flat-square)]()
 
-## ✨ Mejoras aplicadas
+Aplicación de evaluación técnica en consola para contenidos de ASIR. El proyecto incluye banco de preguntas por categorías, modos de examen, temporizador opcional, ranking persistente y métricas de distribución de respuestas.
 
-- Código refactorizado con funciones tipadas y estructura más mantenible.
-- Manejo robusto de errores en carga/guardado de ranking.
-- Validación de entrada más estricta y mensajes más claros.
-- Preguntas mezcladas automáticamente en cada ejecución.
-- Modalidad de examen configurable: completo, corto de 10, corto de 20 o personalizado (cantidad elegida, siempre aleatoria).
-- Temporizador opcional por pregunta con tiempo configurable.
-- Modo examen oficial de un clic: 20 preguntas con 20 segundos por pregunta.
-- Salida de ranking más legible (Top 10).
+## Resumen
 
-## 📚 Banco de preguntas
+- Banco de preguntas organizado por categorías técnicas.
+- Modos de examen: completo, corto (10/20), personalizado y oficial.
+- Temporizador configurable por pregunta.
+- Aleatorización de preguntas y opciones de respuesta.
+- Ranking Top 10 persistente en JSON.
+- Informe final de resultados con distribución A/B/C/D.
 
-El proyecto incluye ahora **60 preguntas** (se añadieron más de 50 nuevas):
+## Estructura del proyecto
 
-- **Informática Básica**: 20
-- **Redes y Comunicaciones**: 20
-- **Seguridad Informática**: 20
+```text
+ASIR-Interactive-Quiz-System/
+├── Cuestionario.py
+├── ranking.json
+└── README.md
+```
 
-También puedes usar **modo mixto** para combinar todas las preguntas.
+## Banco de preguntas
 
-## 🛠️ Requisitos
+| Categoría | Nº preguntas |
+|---|---:|
+| Informática Básica | 20 |
+| Redes y Comunicaciones | 20 |
+| Seguridad Informática | 20 |
 
-- Python 3.10+
+Total: **60 preguntas**.
+
+## Modos de ejecución
+
+| Modo | Descripción |
+|---|---|
+| Personalizado | Cantidad de preguntas y temporizador definidos por el usuario |
+| Oficial | 20 preguntas con 20 segundos por pregunta |
+| Por tema | Selección de una categoría concreta |
+| Mixto | Combinación de preguntas de todas las categorías |
+
+## Requisitos
+
+- Python 3.10 o superior
 - Sin dependencias externas
 
-## 🚀 Ejecución
+## Ejecución
 
 ```bash
+git clone https://github.com/diegofonterosa/ASIR-Interactive-Quiz-System.git
+cd ASIR-Interactive-Quiz-System
 python Cuestionario.py
 ```
 
-## 📁 Archivos
+## Escala de valoración
 
-- `Cuestionario.py`: lógica completa del cuestionario
-- `ranking.json`: ranking persistente (se crea automáticamente)
+| Porcentaje | Resultado |
+|---|---|
+| 90% - 100% | EXCELENTE |
+| 75% - 89% | MUY BIEN |
+| 60% - 74% | BIEN |
+| 50% - 59% | REGULAR |
+| 0% - 49% | INSUFICIENTE |
 
-## 📊 Valoración de resultados
+## Autor
 
-| Porcentaje | Valoración |
-|------------|-----------|
-| 90% - 100% | EXCELENTE - Eres un experto |
-| 75% - 89%  | MUY BIEN - Gran conocimiento |
-| 60% - 74%  | BIEN - Buen trabajo |
-| 50% - 59%  | REGULAR - Puedes mejorar |
-| 0% - 49%   | INSUFICIENTE - Necesitas estudiar más |
+**Diego Pérez Fonterosa**
 
-## 🧪 Nota
+[![GitHub](https://img.shields.io/badge/GitHub-diegofonterosa-181717?style=flat-square&logo=github)](https://github.com/diegofonterosa)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Diego%20Pérez-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/diegoperezfonterosa)
 
-Si quieres ampliar todavía más el banco, solo hay que añadir entradas al diccionario de `cargar_preguntas()` respetando el formato actual.
+## Licencia
+
+© Diego Pérez Fonterosa. Todos los derechos reservados.
